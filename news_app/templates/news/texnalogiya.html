@@ -1,0 +1,24 @@
+{% extends 'news/beas.html' %}
+{% load static %}
+<title>{% block title %} Texnalogiya ynagiliklari {% endblock%}</title>
+{% block content %}
+
+<div style="justify-content: center;">
+  <div class="col-lg-3 col-md-3 col-sm-3">
+    <div class="left_content">
+      <div class="single_post_content_left">
+        <ul class="business_catgnav  wow fadeInDown">
+          {%for local in texnalogik_yangiliklar %}
+          <li>
+            <figure class="bsbig_fig"> <a href="{{ local.get_absolute_url}}" class="featured_img"> <img alt="" src="{{ local.image.url }}"> <span class="overlay"></span> </a>
+              <figcaption> <a href="{{ local.get_absolute_url}}">{{ local.title | truncatewords:5 }}</a> </figcaption>
+              <p>{{ local.title }}</p>
+            </figure>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock%}
