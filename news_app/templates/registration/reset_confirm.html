@@ -1,0 +1,20 @@
+{% extends 'news/beas.html'%}
+{% load static %}
+
+{% block title %}
+  Foydalanuvchining parolini  tiklash
+{% endblock title %}
+
+{% block content %}
+<h1>Parolni tiklash<h1>
+<p>Paroningizni tiklash uchun quidagi formani to'ldiring :</p>
+{% if validlink %}
+    <form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Parolni almashtirish </button>
+    </form>
+{% else %}
+    <p>Siz noto'g'ri linkdan foydalandingiz ,u sizdan avvaliroq foydalanilgan bo'lishi va ishlatilgan bo'lishi mumkin  </p>
+{% endif %}
+
+{%endblock content%}

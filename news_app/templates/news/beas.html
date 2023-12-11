@@ -35,9 +35,24 @@
               <li><a href="{% url 'main' %}">Bosh sahifa</a></li>
               <li><a href="#">Biz haqimizda</a></li>
               <li><a href="{% url 'contact' %}">Biz bilan aloqa</a></li>
+              
+              {% if request.user.is_authenticated and request.user.is_superuser %}
+                <li><a href="{% url 'admin_page' %}">Admin sahifa </a></li>
+              {%endif%}
+              {% comment %} <li>
+                <form method="get" action ="{% url 'searchpage' %}">
+                  <input type="search" name="q" placeholder ="Qidiruv..." class="form-control">
+                </form>
+              </li> {% endcomment %}
             </ul>
           </div>
           <div class="header_top_right">
+            {% if request.user.is_authenticated %}
+            <p><a href="{% url 'user_profile' %}" style="color:yellow ">My profile</a></p>
+            <p><a href="{% url 'logout_page' %}" style="color:mediumseagreen ">Logout</a></p>
+            {% else  %}
+            <p><a href="{% url 'login_page' %}" style="color:yellow">Sayitga kirish </a></p>
+            {% endif %}
             <p>{% now "jS F Y, H:i" %}</p>
           </div>
         </div>
@@ -63,6 +78,11 @@
           <li><a href="{% url 'texnologiya_page' %}">Texnalogiya</a></li>
           <li><a href="{% url 'sport_page' %}">Sport</a></li>
           <li><a href="{% url 'contact' %}">Biz bilan aloqa </a></li>
+          <li>
+            <form method="get" action ="{% url 'searchpage' %}">
+              <input type="search" name="q" placeholder ="Qidiruv..." class="form-control">
+            </form>
+          </li>
           {% comment %} <li><a href="pages/404.html">404 Page</a></li> {% endcomment %}
         </ul>
       </div>

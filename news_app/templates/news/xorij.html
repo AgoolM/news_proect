@@ -1,5 +1,6 @@
 {% extends 'news/beas.html' %}
 {% load static %}
+{% load hitcount_tags %}
 <title>{% block title %} Xoriji ynagiliklari {% endblock%}</title>
 {% block content %}
 
@@ -13,6 +14,7 @@
             <figure class="bsbig_fig"> <a href="{{ local.get_absolute_url}}" class="featured_img"> <img alt="" src="{{ local.image.url }}"> <span class="overlay"></span> </a>
               <figcaption> <a href="{{ local.get_absolute_url}}">{{ local.title | truncatewords:5 }}</a> </figcaption>
               <p>{{ local.title }}</p>
+              <i class="fa fa-eye" aria-hidden="true"></i> {% get_hit_count for local %}
             </figure>
           </li>
           {% endfor %}

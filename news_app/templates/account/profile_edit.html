@@ -1,0 +1,17 @@
+{% extends 'news/beas.html'%}
+{% load static %}
+{% block title %} Foydalanuvchining ma'lumotlarini o'zgartirish  {% endblock title %}
+
+{% block content %}
+<h1> Foydalanuvchining ma'lumotlarini o'zgartirish </h1>
+    <p>Siz o'zingiz haqingizdagi ma'lumotlarini quidagi formlar orqali o'zgartirishingiz mumkin </p>
+
+
+    <form method="post" enctype= "multipart/form-data"> {% csrf_token %}
+      {{ user_form.as_p }}
+      {{ profile_form.as_p }}
+      {% comment %} {{ user_form.as_p}} {% endcomment %}
+      <button type='submit'>O'zgartirishni saqalsh </button>
+    </form>
+  
+{%endblock content %}

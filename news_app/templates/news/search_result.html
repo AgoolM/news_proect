@@ -1,0 +1,16 @@
+{% extends "news/beas.html" %}
+{% load static %}
+
+{% block title %}Qidiruv natijalri{% endblock title%}
+
+{%block content %}
+    <h2>Qidiruv bo'yicha natijalar</h2>
+    {% for yangiliklar in barcha_yangiliklar%}
+    
+         <h3>
+          <a href="{% url 'news_detail' yangiliklar.slug %}" class="text-danger">{{ yangiliklar.title}}</a></h3>
+          <p> <img src="{{ yangiliklar.image.url }}" width="30%"></p>
+          <p>{{ yangiliklar.body | truncatewords:30 }}</p>
+
+    {% endfor%}
+{% endblock content %}

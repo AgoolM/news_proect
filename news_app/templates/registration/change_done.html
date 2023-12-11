@@ -1,0 +1,9 @@
+{% extends 'news/beas.html'%}
+{% load static %}
+{% block title%}Foydalanuvchining  paroli o'zgardi {% endblock title %}
+
+{% block content %}
+
+    <h2>Sizning parolingiz o'zgardi. </h2>
+    <p>{{ request.user.username.title}} sizningparolingiz muofaqiyatli o'zgardi</p>
+{% endblock content%}

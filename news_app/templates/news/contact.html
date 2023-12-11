@@ -1,6 +1,6 @@
 {% extends 'news/beas.html' %}
 {% load static %}
-
+{% load hitcount_tags %}
   {% block content %}
   <title>{% block title %} Contact {% endblock%}</title>
   <div class="row">
@@ -8,7 +8,7 @@
       <div class="left_content">
         <div class="contact_area">
           <h2>Contact Us</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labolore magna aliqua. Ut enim ad minim veniam. Lorem ipsum dosectetur adipisicing elit, sed do.Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+          <p>Biz haqimizda fikir va mulohazalaringiz va maslahatlaring bo'lsa be'malol murojat etishingiz mumkin </p>
           <form action="#" class="contact_form" method='post'> {% csrf_token %}
             <input class="form-control" type="text" placeholder="Name*" name='name'>
             <input class="form-control" type="email" placeholder="Email*" name='email'>
@@ -27,7 +27,9 @@
             {% for news in latest_news %}
             <li>
               <div class="media"> <a href="{% url "news_detail" news.pk %}" class="media-left"> <img alt="" src="{{ news.image.url }}"> </a>
-                <div class="media-body"> <a href="{% url "news_detail" news.pk %}" class="catg_title">{{ news.title | truncatewords:5 }}</a> </div>
+                <div class="media-body"> <a href="{% url "news_detail" news.pk %}" class="catg_title">{{ news.title | truncatewords:5 }}</a> 
+                  <i class="fa fa-eye" aria-hidden="true"></i> {% get_hit_count for news %}
+                </div>
               </div>
             </li>
            {% endfor %}

@@ -1,0 +1,22 @@
+{% extends 'news/beas.html'%}
+{% load static %}
+{% block title%}Login sahifasi{% endblock title %}
+
+{% block content %}
+
+    <h2>Veb sayitga kirish login </h2>
+    <p>Iltimos sayitga kirish uchun quiydagi formani to'ldiring .</p>
+
+    <form method="post">{% csrf_token%}
+      {{ form.as_p  }}
+    <button type="submit">Login</button>
+    </form>
+    <h4>Agar foydalanuvchi profilingiz bo'lmasa <a href="{% url 'user_register' %}" style=color:red>ruyxatdan </a>o'tishingiz mumkin</h4>
+    {% comment %} <h2>Agar foydalanuvchi profilingiz bo'lmasa <a href="{% url 'user_register' %}" style=color:red>o'tishingiz mumkin </a><h2> {% endcomment %}
+
+
+
+
+
+
+{%endblock content%}

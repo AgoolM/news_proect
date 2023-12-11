@@ -1,0 +1,14 @@
+{% extends 'news/beas.html'%}
+{% load static %}
+{% block title%}Foydalanuvching parolini o'zgartirish {% endblock title %}
+
+{% block content %}
+
+    <h2>Parolni o'zgartirish  </h2>
+    <p>Parolingizni o'zgartirish uchun quiydagi formani to'ldiring </p>
+
+    <form method="post">{% csrf_token%}
+      {{ form.as_p  }}
+      <button type="submit">Parolni o'zgartirishni tasdiqlash</button>
+    </form>
+{% endblock content%}
