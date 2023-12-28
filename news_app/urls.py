@@ -1,9 +1,11 @@
 from django.urls import path
+from django.views.i18n import set_language
 from .views import news_list,news_detail,ContactPageView,blogpage,HomePageView,LocalNewsView,ForeignNewsView,TexnalogNewsView,SportNewsView,NewsDeleteView,NewsUpdateView,NewsCresteView,admin_page_view,SearchResultsList
 
 
 urlpatterns = [
     path('',HomePageView.as_view(), name='main'),
+    path('set-language/', set_language, name='set_language'),
     path('all/', news_list, name='news_list'),
     path('news/create/',NewsCresteView.as_view(),name='news_create'),
     path('news/<slug:news>',news_detail, name='news_detail'),

@@ -1,10 +1,10 @@
 {% extends "news/beas.html" %}
 {% load static %}
-
-{% block title %}Qidiruv natijalri{% endblock title%}
+{% load i18n %}
+{% block title %} {% trans "Qidiruv natijalri" %} {% endblock title%}
 
 {%block content %}
-    <h2>Qidiruv bo'yicha natijalar</h2>
+    <h2>{% trans "Qidiruv bo'yicha natijalar" %}</h2>
     {% for yangiliklar in barcha_yangiliklar%}
     
          <h3>

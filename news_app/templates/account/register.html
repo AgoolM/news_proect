@@ -1,16 +1,17 @@
 {% extends 'news/beas.html'%}
 {% load static %}
-{% block title %} Foydalanuvchilarni ro'yxatdan o'tkazish {% endblock title %}
+{% load i18n %}
+{% block title %} {% trans "Foydalanuvchilarni ro'yxatdan o'tkazish" %} {% endblock title %}
 
 {% block content %}
-<h1> Yangi foydalanuvchini ro'yxatdan o'tkazish </h1>
-    <p>Ro'yxatdan o'tish uchun quidagi formani to'ldiring </p>
+<h1> {% trans "Yangi foydalanuvchini ro'yxatdan o'tkazish"%} </h1>
+    <p>{% trans "Ro'yxatdan o'tish uchun quidagi formani to'ldiring " %}</p>
 
 
     <form method="post"> {% csrf_token %}
       {{ user_form.as_p}}
       {% comment %} {{ user_form.as_p}} {% endcomment %}
-      <button type='submit'>Ro'yxatdan o'tish </button>
+      <button type='submit'>{% trans "Ro'yxatdan o'tish" %} </button>
     </form>
   
 {%endblock content %}

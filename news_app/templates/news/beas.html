@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,13 +33,28 @@
         <div class="header_top">
           <div class="header_top_left">
             <ul class="top_nav">
-              <li><a href="{% url 'main' %}">Bosh sahifa</a></li>
-              <li><a href="#">Biz haqimizda</a></li>
-              <li><a href="{% url 'contact' %}">Biz bilan aloqa</a></li>
+              <li><a href="{% url 'main' %}">{% trans "Bosh sahifa" %}</a></li>
+              <li><a href="#">{% trans "Biz haqimizda" %}</a></li>
+              <li><a href="{% url 'contact' %}">{% trans "Biz bilan aloqa" %}</a></li>
               
               {% if request.user.is_authenticated and request.user.is_superuser %}
-                <li><a href="{% url 'admin_page' %}">Admin sahifa </a></li>
+                <li><a href="{% url 'admin_page' %}">{% trans "Admin sahifa"%} </a></li>
               {%endif%}
+              <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                <input name="next" type="hidden" value="{{ redirect_to }}">
+                <select name="language">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                            {{ language.name_local }} ({{ language.code }})
+                        </option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Go">
+            </form>
+
               {% comment %} <li>
                 <form method="get" action ="{% url 'searchpage' %}">
                   <input type="search" name="q" placeholder ="Qidiruv..." class="form-control">
@@ -48,10 +64,10 @@
           </div>
           <div class="header_top_right">
             {% if request.user.is_authenticated %}
-            <p><a href="{% url 'user_profile' %}" style="color:yellow ">My profile</a></p>
-            <p><a href="{% url 'logout_page' %}" style="color:mediumseagreen ">Logout</a></p>
+            <p><a href="{% url 'user_profile' %}" style="color:yellow ">{% trans "My profile" %}</a></p>
+            <p><a href="{% url 'logout_page' %}" style="color:mediumseagreen ">{% trans "Logout" %}</a></p>
             {% else  %}
-            <p><a href="{% url 'login_page' %}" style="color:yellow">Sayitga kirish </a></p>
+            <p><a href="{% url 'login_page' %}" style="color:yellow">{% trans "Sayitga kirish" %} </a></p>
             {% endif %}
             <p>{% now "jS F Y, H:i" %}</p>
           </div>
@@ -72,12 +88,12 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav main_nav">
-          <li class="active"><a href="{% url 'main' %}"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
-          <li><a href="{% url 'local_page' %}">Mahaliy</a></li>
-          <li><a href="{% url 'xorij_page' %}">Xorij</a></li>
-          <li><a href="{% url 'texnologiya_page' %}">Texnalogiya</a></li>
-          <li><a href="{% url 'sport_page' %}">Sport</a></li>
-          <li><a href="{% url 'contact' %}">Biz bilan aloqa </a></li>
+          <li class="active"><a href="{% url 'main' %}"><span class="fa fa-home desktop-home"></span><span class="mobile-show">{% trans "Home" %}</span></a></li>
+          <li><a href="{% url 'local_page' %}">{% trans "Mahaliy" %}</a></li>
+          <li><a href="{% url 'xorij_page' %}">{% trans "Xorij" %}</a></li>
+          <li><a href="{% url 'texnologiya_page' %}">{% trans "Texnalogiya" %}</a></li>
+          <li><a href="{% url 'sport_page' %}">{% trans "Sport" %}</a></li>
+          <li><a href="{% url 'contact' %}">{% trans "Biz bilan aloqa"%} </a></li>
           <li>
             <form method="get" action ="{% url 'searchpage' %}">
               <input type="search" name="q" placeholder ="Qidiruv..." class="form-control">
@@ -91,7 +107,7 @@
   <section id="newsSection">
     <div class="row">
       <div class="col-lg-12 col-md-12">
-        <div class="latest_newsarea"> <span>So'ngi yangiliklar</span>
+        <div class="latest_newsarea"> <span>{% trans "So'ngi yangiliklar" %}</span>
           <ul id="ticker01" class="news_sticker">
             {% for news in latest_news %}
             <li><a href="{% url "news_detail" news.pk %}"><img src="{{ news.image.url }}" alt="">{{ news.title | truncatewords:5}}</a></li>
@@ -135,7 +151,7 @@
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
           <div class="footer_widget wow fadeInDown">
-            <h2>Teglar</h2>
+            <h2>{% trans "Teglar" %}</h2>
             <ul class="tag_nav">
               {% for kategoriya in cotegories %}
               <li><a href="#">{{ kategoriya.name }}</a></li>
@@ -145,7 +161,7 @@
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
           <div class="footer_widget wow fadeInRightBig">
-            <h2>Biz bilan aloqa</h2>
+            <h2>{% trans "Biz bilan aloqa" %}</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
             <address>
             Perfect News,1238 S . 123 St.Suite 25 Town City 3333,USA Phone: 123-326-789 Fax: 123-546-567

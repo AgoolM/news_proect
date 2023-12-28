@@ -1,19 +1,19 @@
 {% extends 'news/beas.html' %}
 {% load static %}
-
-{% block title %} Foydalanuvchi profile {% endblock %}
+{% load i18n %}
+{% block title %} {% trans "Foydalanuvchi profile" %}% {% endblock %}
 {% block content %}
 
-  <h3>Hush kelibsiz {{ user.username.title }} </h3>
-  <h2>Profildan chiqish <a href="{% url 'logout_page' %}" style=color:red>Logout</a><h2>
-  <h2>Siz haqingizdagi ma'lumotlar </h2>
+  <h3>{% trans "Hush kelibsiz" %} {{ user.username.title }} </h3>
+  <h2>{% trans "Profildan chiqish" %} <a href="{% url 'logout_page' %}" style=color:red>Logout</a><h2>
+  <h2>{% trans "Siz haqingizdagi ma'lumotlar" %} </h2>
   <img src = "{{ profile.photo.url}}" width='50%'>
-  <label>Username:</label> <input value="{{ user.username }}" readonly placehlder ="kiritilmagan"><br>
-  <label>Emailingiz:</label> <input value="{{ user.email }}" readonly placehlder ="kiritilmagan"><br>
-  <label>Ismingiz:</label> <input value="{{ user.first_name }}" readonly placehlder ="kiritilmagan"><br>
-  <label>Familiyangiz:</label> <input value="{{ user.last_name }}" readonly placehlder ="kiritilmagan"><br>
+  <label>{% trans "Username" %}:</label> <input value="{{ user.username }}" readonly placehlder ="kiritilmagan"><br>
+  <label>{% trans "Emailingiz" %}:</label> <input value="{{ user.email }}" readonly placehlder ="kiritilmagan"><br>
+  <label>{% trans "Ismingiz" %}:</label> <input value="{{ user.first_name }}" readonly placehlder ="kiritilmagan"><br>
+  <label>{% trans "Familiyangiz" %}:</label> <input value="{{ user.last_name }}" readonly placehlder ="kiritilmagan"><br>
 
-  <h4><a href ="{% url 'password_change' %}" style="color:blue ">Parolni almashtirish </a>|
-  <h4><a href ="{% url 'etit_user' %}" style="color:blue ">Profilni taxrirlash </a>
+  <h4><a href ="{% url 'password_change' %}" style="color:blue ">{% trans "Parolni almashtirish" %} </a>|
+  <h4><a href ="{% url 'etit_user' %}" style="color:blue ">{% trans "Profilni taxrirlash" %} </a>
 
 {%endblock content%}

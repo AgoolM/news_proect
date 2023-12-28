@@ -1,10 +1,11 @@
 {% extends 'news/beas.html'%}
 {% load static %}
-{% block title %} Muofaqiyatliy ro'yxatdan o'tdingiz  {% endblock title %}
+{% load i18n %}
+{% block title %}{% trans " Muofaqiyatliy ro'yxatdan o'tdingiz" %} {% endblock title %}
 
 {% block content %}
-<h1> {{ new_user.username.title }}, tabriklaymiz ro'yxatdan o'tdingiz  </h1>
-    <p>Muofaqiyatliy ro'yxatdan o'tdingiz </p>
+<h1> {{ new_user.username.title }}, {% trans "tabriklaymiz ro'yxatdan o'tdingiz" %}  </h1>
+    <p>{% trans "Muofaqiyatliy ro'yxatdan o'tdingiz" %} </p>
 
 
     

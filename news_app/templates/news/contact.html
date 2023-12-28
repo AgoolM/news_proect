@@ -1,14 +1,15 @@
 {% extends 'news/beas.html' %}
 {% load static %}
+{% load i18n %}
 {% load hitcount_tags %}
   {% block content %}
-  <title>{% block title %} Contact {% endblock%}</title>
+  <title>{% block title %} {% trans " Contact" %} {% endblock%}</title>
   <div class="row">
     <div class="col-lg-8 col-md-8 col-sm-8">
       <div class="left_content">
         <div class="contact_area">
-          <h2>Contact Us</h2>
-          <p>Biz haqimizda fikir va mulohazalaringiz va maslahatlaring bo'lsa be'malol murojat etishingiz mumkin </p>
+          <h2>{% trans "Contact Us" %}</h2>
+          <p>{% trans "Biz haqimizda fikir va mulohazalaringiz va maslahatlaring bo'lsa be'malol murojat etishingiz mumkin "%}</p>
           <form action="#" class="contact_form" method='post'> {% csrf_token %}
             <input class="form-control" type="text" placeholder="Name*" name='name'>
             <input class="form-control" type="email" placeholder="Email*" name='email'>

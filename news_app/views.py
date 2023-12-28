@@ -2,7 +2,6 @@ from audioop import reverse
 from typing import Any
 from django.views import View
 from hitcount.views import HitCountDetailView,HitCountMixin
-#from hitcount.mixins import HitCountMixin
 from hitcount.utils import get_hitcount_model
 from django.contrib.auth.models import User
 from django.db.models import Q 
@@ -16,6 +15,8 @@ from django.http import HttpResponse
 from .models import Contact, News, Category ,Comsent
 from .forms import ContactForm ,CommentForm
 from config.custom_permissions import OnlyLoggedSuperUser
+import gettext
+
 
 
 def news_list(request):
@@ -182,10 +183,10 @@ class HomePageView(ListView):
        context = super().get_context_data(**kwargs)
        context['categories'] = Category.objects.all()
        context['news_list'] = News.published.all().order_by('-publish_time')[:5] 
-       context['mahalliy_news'] = News.published.all().filter(category__name="Mahalliy").order_by("-publish_time")[0:6]
-       context['xorij_news'] = News.published.all().filter(category__name="Xorij").order_by("-publish_time")[0:6]
-       context['sport_news'] = News.published.all().filter(category__name="Sport").order_by("-publish_time")[0:6]
-       context['texno_news']=News.published.all().filter(category__name="Texnalogiya").order_by("-publish_time")[0:6]
+       context['mahalliy_news'] = News.published.all().filter(category__name_uz="Mahalliy").order_by("-publish_time")[0:6]
+       context['xorij_news'] = News.published.all().filter(category__name_uz="Xorij").order_by("-publish_time")[0:6]
+       context['sport_news'] = News.published.all().filter(category__name_uz="Sport").order_by("-publish_time")[0:6]
+       context['texno_news']=News.published.all().filter(category__name_uz="Texnalogiya").order_by("-publish_time")[0:6]
 
        return context
 
@@ -216,7 +217,6 @@ class ContactPageView(TemplateView):
           "form":form
        }
        return render(request, 'news/contact.html', context)
-    
     def post(self, request, *args, **kwargs):
         form = ContactForm(request.POST)
         if request.method =="POST" and form.is_valid():
@@ -239,7 +239,7 @@ class LocalNewsView(ListView):
     context_object_name = 'mahlliy_yangiliklar'
 
     def get_queryset(self):
-        news = self.model.published.all().filter(category__name='Mahalliy')
+        news = self.model.published.all().filter(category__name_uz='Mahalliy')
         return news
    
 
@@ -250,7 +250,7 @@ class ForeignNewsView(ListView):
    context_object_name = 'xorji_yangiliklar'
 
    def get_queryset(self):
-      news = self.model.published.all().filter(category__name='Xorij')
+      news = self.model.published.all().filter(category__name_uz='Xorij')
       return news
 
 
@@ -260,7 +260,7 @@ class TexnalogNewsView(ListView):
    context_object_name = 'texnalogik_yangiliklar'
 
    def get_queryset(self):
-      news = self.model.published.all().filter(category__name='Texnalogiya')
+      news = self.model.published.all().filter(category__name_uz='Texnalogiya')
       return news
 
 class SportNewsView(ListView):
@@ -269,7 +269,7 @@ class SportNewsView(ListView):
    context_object_name = 'sport_yangiliklar'
 
    def get_queryset(self):
-      news = self.model.published.all().filter(category__name='Sport')
+      news = self.model.published.all().filter(category__name_uz='Sport')
       return news
 
 
@@ -286,7 +286,7 @@ class NewsDeleteView(OnlyLoggedSuperUser,DeleteView):
 
 class NewsCresteView(OnlyLoggedSuperUser,CreateView):
    model = News
-   fields = ('title','slug','body','image','category','status')
+   fields = ('title','title_uz','title_en','title_ru','slug','body','body_uz','body_en','body_ru','image','category','status')
    template_name = "crud/news_create.html"
    #success_url = reverse_lazy('main')
 

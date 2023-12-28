@@ -1,7 +1,8 @@
 {% extends 'news/beas.html' %}
 {% load static %}
 {% load hitcount_tags %}
-<title>{% block title %} Mahalliy yangiliklar  {% endblock%}</title>
+{% load i18n %}
+<title>{% block title %} {% trans "Mahalliy yangiliklar" %} {% endblock%}</title>
 {% block content %}
 
 

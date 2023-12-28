@@ -24,21 +24,17 @@
 <h2>
   <a href="{% url 'news_create' %}" class="text-primary">+Yangilik qo'shish</a>
 </h2>
-<table class="table table-bordered teble-responsive teble-striped">
+<table class="table table-bordered table-responsive table-striped">
   <tr>
-    
-    <th>Ismi</th>
+    <th>Ism</th>
     <th>Email</th>
-    <th>Xabari</th>
-    
+    <th>Xabar</th>
   </tr>
-  {% for item in form %}
   <tr>
-    <td>{{ item.name }}</td>
-    <td>{{ item.email }}</td>
-    <td>{{ item.message }}</td>
+    <td>{{ form.name }}</td>
+    <td>{{ form.email }}</td>
+    <td>{{ form.message }}</td>
   </tr>
-{% endfor %}
 </table>
 
 {%endblock content%}

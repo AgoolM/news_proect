@@ -1,7 +1,8 @@
 {% extends 'news/beas.html' %}
 {% load static %}
 {% load hitcount_tags %}
-<title>{% block title %} Sport yangiliklari {% endblock%}</title>
+{% load i18n %}
+<title>{% block title %} {% trans "Sport yangiliklari" %}% {% endblock%}</title>
 {% block content %}
 
 <div style="justify-content: center;">
@@ -15,6 +16,7 @@
               <figcaption> <a href="{{ local.get_absolute_url}}">{{ local.title | truncatewords:5 }}</a> </figcaption>
               <p>{{ local.title }}</p>
               <i class="fa fa-eye" aria-hidden="true"></i> {% get_hit_count for local %}
+              <i class="fa fa-comment">{{ comment_count }}</i>
             </figure>
           </li>
           {% endfor %}
